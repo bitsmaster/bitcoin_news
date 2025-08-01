@@ -3,8 +3,8 @@ from datetime import datetime
 import re
 from xml.etree import ElementTree as ET
 
-TELEGRAM_TOKEN = 'SEU_TOKEN'
-TELEGRAM_CHAT_ID = 'SEU_CHAT_ID'
+TELEGRAM_TOKEN = '7971954902:AAETND7AOCP4QZN-Sk0f5-PqeMTzMNxUHPo'
+TELEGRAM_CHAT_ID = '160224629'
 RSS_FEEDS = [
   'https://api.allorigins.win/raw?url=https://cointelegraph.com/rss',
   'https://api.allorigins.win/raw?url=https://livecoins.com.br/feed/'
@@ -26,8 +26,9 @@ def fetch_indicator(url, pattern):
 def fetch_all():
     results = {}
     # MVRV – via Bitcoinition API
-    resp = requests.get('https://bitcoinition.com/api/mvrv/zscore.json', timeout=10)
-    results['mvrv'] = float(resp.json().get('zscore'))
+    resp = requests.get('https://bitcoinition.com/current.json', timeout=10)
+    mvrv_raw = resp.json()
+    results['mvrv'] = float(mvrv_raw['data']['current_mvrvzscore'])
     # Puell – scraping Bitbo
     puell = fetch_indicator('https://charts.bitbo.io/puell-multiple/', r'Puell Multiple.*?(\d+\.\d+)')
     results['puell'] = puell
@@ -58,6 +59,7 @@ def send_telegram(msg):
 
 def main():
     last_signal = {}
+    send_telegram("✅ Bot iniciado com sucesso! Este é um teste.")
     while True:
         inds = fetch_all()
         signals = []
@@ -77,6 +79,7 @@ def main():
                 msg += f"\n– [{t}]({l})"
             send_telegram(msg)
             last_signal['signals'] = signals
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] Checado. Indicadores: {inds}")
         time.sleep(SLEEP_SECONDS)
 
 if __name__ == '__main__':
