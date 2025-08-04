@@ -5,7 +5,7 @@ from xml.etree import ElementTree as ET
 import os
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
-TELEGRAM_CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
+TELEGRAM_CHAT_ID = os.environ['TELEGRAM_ID']
 
 RSS_FEEDS = [
   'https://api.allorigins.win/raw?url=https://cointelegraph.com/rss',
