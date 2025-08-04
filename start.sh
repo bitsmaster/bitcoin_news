@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 telegram.py
+python3 telegram2.py
