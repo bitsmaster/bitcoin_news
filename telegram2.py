@@ -2,9 +2,11 @@ import requests, time
 from datetime import datetime
 import re
 from xml.etree import ElementTree as ET
+import os
 
-TELEGRAM_TOKEN = 'TELEGRAM_TOKEN'
-TELEGRAM_CHAT_ID = 'TELEGRAM_ID'
+TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
+TELEGRAM_CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
+
 RSS_FEEDS = [
   'https://api.allorigins.win/raw?url=https://cointelegraph.com/rss',
   'https://api.allorigins.win/raw?url=https://livecoins.com.br/feed/'
