@@ -13,7 +13,7 @@ RSS_FEEDS = [
 ] 
 SLEEP_SECONDS = 3600
 BUY_THRESHOLDS = {
-    'mvrv': 3.0,
+    'mvrv': 2.0,
     'puell': 0.4,
     'nupl': 0.0,
     'sopr': None
